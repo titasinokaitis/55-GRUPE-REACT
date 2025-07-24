@@ -1,7 +1,7 @@
 export function Footer() {
     return (
         <footer>
-            FOOTER CONTENT
+            <p>Pagaminta Lietuvoje 💗</p>
         </footer>
     );
 }
