@@ -1,18 +1,13 @@
-export function TodoList({ list, modifyTaskFunc }) {
+import { TodoItem } from "./TodoItem";
+
+export function TodoList({ list, modifyTaskCompletionFunc, modifyTaskTextFunc }) {
+    if (list.length === 0) {
+        return <p>Empty task list</p>;
+    }
+
     return (
-        <>
-            <h2>Active tasks</h2>
-            <ul>
-                {
-                    list.map(item => (
-                        <li className="d-flex my-3 p-2" key={item.id}
-                            style={{ backgroundColor: '#f1f1f1' }}>
-                            {item.text}
-                            <button onClick={() => modifyTaskFunc(item.id)} className="btn btn-danger btn-sm ms-auto">Remove</button>
-                        </li>
-                    ))
-                }
-            </ul>
-        </>
+        <ul>
+            {list.map(item => <TodoItem key={item.id} task={item} modifyTaskTextFunc={modifyTaskTextFunc} modifyTaskCompletionFunc={modifyTaskCompletionFunc} />)}
+        </ul>
     )
 }
