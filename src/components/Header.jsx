@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router';
 import logo from '../assets/react.svg';
+import { menuData } from '../data/MenuData';
 
 export function Header() {
     return (
@@ -10,21 +11,13 @@ export function Header() {
                     <span className="fs-4">Simple header</span>
                 </a>
                 <ul className="nav nav-pills">
-                    <li className="nav-item">
-                        <NavLink className='nav-link' to='/'>Home</NavLink>
-                    </li>
-                    <li className="nav-item">
-                        <NavLink className='nav-link' to='/about'>About</NavLink>
-                    </li>
-                    <li className="nav-item">
-                        <NavLink className='nav-link' to='/services'>Services</NavLink>
-                    </li>
-                    <li className="nav-item">
-                        <NavLink className='nav-link' to='/login'>Login</NavLink>
-                    </li>
-                    <li className="nav-item">
-                        <NavLink className='nav-link' to='/register'>Register</NavLink>
-                    </li>
+                    {
+                        menuData.map(item => (
+                            <li key={item.href} className="nav-item">
+                                <NavLink className='nav-link' to={item.href}>{item.text}</NavLink>
+                            </li>
+                        ))
+                    }
                 </ul>
             </header>
         </div>
