@@ -1,12 +1,28 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TodoForm } from "../components/todo/TodoForm";
 import { TodoList } from "../components/todo/TodoList";
 import { TodoStats } from "../components/todo/TodoStats";
 
 export function Todo() {
+    const dataKey = '55gr-todo';
     const [tabIndex, setTabIndex] = useState(0);
     const [id, setId] = useState(1);
     const [list, setList] = useState([]);
+
+    useEffect(() => {
+        const data = JSON.parse(localStorage.getItem(dataKey));
+
+        if (data && data.length > 0) {
+            setList(data);
+            setId(data.at(-1).id + 1);
+        } else {
+            localStorage.setItem(dataKey, JSON.stringify(list));
+        }
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem(dataKey, JSON.stringify(list));
+    }, [list]);
 
     let filteredList = list;
     if (tabIndex === 1) {

@@ -1,8 +1,11 @@
 import { NavLink } from 'react-router';
 import logo from '../assets/react.svg';
-import { menuData } from '../data/MenuData';
+import { adminMenuData, publicMenuData } from '../data/MenuData';
 
 export function Header() {
+    const isLoggedIn = false;
+    const menuData = isLoggedIn ? adminMenuData : publicMenuData;
+
     return (
         <div className="container">
             <header className="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
